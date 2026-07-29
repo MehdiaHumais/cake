@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Celebration | Select Experience Mode</title>
+  <meta name="description" content="Choose between Classic Birthday Celebration Mode or Futuristic AI Agentic Protocol Mode. Interactive cake cutting, sound FX, and animations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;600;800;900&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="agentic-theme">
+
+  <!-- Styled Top Controls Header Bar -->
+  <header class="top-controls">
+    <button id="mode-switch-btn" class="control-btn mode-switch-btn" aria-label="Switch Mode">
+      <span class="btn-icon" id="switch-icon">🔁</span>
+      <span class="btn-text" id="switch-text">SWITCH MODE</span>
+    </button>
+    <button id="audio-toggle" class="control-btn audio-btn" aria-label="Toggle Audio">
+      <span class="audio-icon">🎵</span>
+      <span class="audio-text">SOUND ON</span>
+    </button>
+  </header>
+
+  <!-- INITIAL MODE SELECTION MODAL (POPUP ON STARTUP) -->
+  <div id="mode-select-modal" class="mode-select-modal">
+    <div class="mode-select-card">
+      <h2 class="mode-modal-title">CHOOSE CELEBRATION MODE</h2>
+      <p class="mode-modal-sub">Select your preferred birthday cake experience</p>
+      
+      <div class="mode-options">
+        <!-- Classic Mode Option -->
+        <div id="select-classic-btn" class="mode-card classic-card">
+          <div class="card-badge">CLASSIC</div>
+          <div class="card-icon">🎂</div>
+          <h3 class="card-title">CLASSIC MODE</h3>
+          <p class="card-desc">Warm cream aesthetics, 2-tier strawberry glaze birthday cake with 3 striped candles, confetti & celebratory card.</p>
+          <button class="mode-btn classic-btn">START CLASSIC MODE ✨</button>
+        </div>
+
+        <!-- Agentic Mode Option -->
+        <div id="select-agentic-btn" class="mode-card agentic-card">
+          <div class="card-badge">AI PROTOCOL</div>
+          <div class="card-icon">🤖</div>
+          <h3 class="card-title">AGENTIC MODE</h3>
+          <p class="card-desc">Futuristic AI headquarters, robotic arm cake delivery, laser knife cutting, AI agent avatars, and cinematic outro.</p>
+          <button class="mode-btn agentic-btn">START AGENTIC MODE ⚡</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROOT LEVEL TERMINAL OVERLAY (MOVED TO ROOT BODY TO ELIMINATE 3D STACKING CONTEXT TRAPS) -->
+  <div id="terminal-overlay" class="terminal-overlay hidden">
+    <div class="terminal-card">
+      <div class="terminal-header">
+        <span class="terminal-dot red"></span>
+        <span class="terminal-dot yellow"></span>
+        <span class="terminal-dot green"></span>
+        <span class="terminal-title">SYS_COMMUNICATION_LINK.EXE</span>
+      </div>
+      <div class="terminal-body">
+        <div class="speaker-tag" id="speaker-tag">🤖 AGENT JST</div>
+        <div class="typing-text" id="terminal-text"></div>
+      </div>
+      <div class="terminal-footer">
+        <button id="terminal-action-btn" class="cyber-btn hidden">
+          <span class="btn-text">INITIALIZE CAKE PROTOCOL ⚡</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AGENTIC MODE SCENE CONTAINER -->
+  <div id="hq-container" class="hq-container hidden">
+
+    <div class="hq-background">
+      <div class="hq-grid"></div>
+      <div class="hq-lights"></div>
+      <div class="hq-window"><div class="city-skyline"></div></div>
+      <div id="conference-table" class="conference-table">
+        <div class="table-surface"></div>
+        <div class="table-edge"></div>
+      </div>
+    </div>
+
+    <!-- Standing AI Agents in Background -->
+    <div id="background-agents" class="background-agents">
+      <div class="agent-silhouette left-agent-1"><div class="agent-head"><div class="agent-visor"></div></div><div class="agent-body"></div><div class="agent-arms"></div></div>
+      <div class="agent-silhouette left-agent-2"><div class="agent-head"><div class="agent-visor"></div></div><div class="agent-body"></div><div class="agent-arms"></div></div>
+      <div class="agent-silhouette right-agent-1"><div class="agent-head"><div class="agent-visor"></div></div><div class="agent-body"></div><div class="agent-arms"></div></div>
+      <div class="agent-silhouette right-agent-2"><div class="agent-head"><div class="agent-visor"></div></div><div class="agent-body"></div><div class="agent-arms"></div></div>
+    </div>
+
+    <!-- Robotic Arm -->
+    <div id="robotic-arm" class="robotic-arm-container">
+      <svg viewBox="0 0 400 600" class="robotic-arm-svg">
+        <defs>
+          <linearGradient id="metal-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#2a3342"/>
+            <stop offset="50%" stop-color="#141a24"/>
+            <stop offset="100%" stop-color="#090d14"/>
+          </linearGradient>
+          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="6" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <g id="arm-mechanics" class="arm-mechanics">
+          <rect x="175" y="0" width="50" height="120" rx="10" fill="url(#metal-grad)" stroke="#00f3ff" stroke-width="2"/>
+          <circle cx="200" cy="120" r="28" fill="#121824" stroke="#00f3ff" stroke-width="3"/>
+          <line x1="200" y1="120" x2="200" y2="280" stroke="url(#metal-grad)" stroke-width="24" stroke-linecap="round"/>
+          <line x1="200" y1="120" x2="200" y2="280" stroke="#00f3ff" stroke-width="2" filter="url(#glow)"/>
+          <circle cx="200" cy="280" r="22" fill="#121824" stroke="#ff007f" stroke-width="3"/>
+          <line x1="200" y1="280" x2="200" y2="410" stroke="url(#metal-grad)" stroke-width="18" stroke-linecap="round"/>
+          <path d="M 140 410 C 140 460, 260 460, 260 410" fill="none" stroke="#00f3ff" stroke-width="8" stroke-linecap="round" filter="url(#glow)"/>
+          <circle cx="140" cy="410" r="10" fill="#00f3ff" filter="url(#glow)"/>
+          <circle cx="260" cy="410" r="10" fill="#00f3ff" filter="url(#glow)"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Mini Avatars -->
+    <div id="ai-avatars-container" class="ai-avatars-container">
+      <div id="avatar-1" class="mini-avatar avatar-left hidden">
+        <div class="avatar-icon">🤖<div class="status-dot"></div></div>
+        <div class="speech-bubble">"Mission completed."</div>
+      </div>
+      <div id="avatar-2" class="mini-avatar avatar-center hidden">
+        <div class="avatar-icon">🛸<div class="status-dot"></div></div>
+        <div class="speech-bubble">"Birthday successfully celebrated."</div>
+      </div>
+      <div id="avatar-3" class="mini-avatar avatar-right hidden">
+        <div class="avatar-icon">⚡<div class="status-dot"></div></div>
+        <div class="speech-bubble">"Returning to innovation tomorrow."</div>
+      </div>
+    </div>
+
+    <!-- HUD Header -->
+    <header class="hud-header">
+      <div class="hud-brand">
+        <span class="hud-dot"></span>
+        <span class="hud-title" id="hud-title-text">AI CORE // PROTOCOL 0x889</span>
+      </div>
+      <div class="hud-status" id="hud-status-text">INITIALIZING...</div>
+    </header>
+
+    <!-- Outro Overlay -->
+    <div id="outro-overlay" class="outro-overlay hidden">
+      <div class="outro-content">
+        <div id="outro-message" class="outro-message">
+          "Thank you for inspiring us to build the future. Happy Birthday, Sir."
+        </div>
+        <div id="company-logo" class="company-logo">
+          <div class="logo-icon">
+            <div class="logo-ring"></div>
+            <div class="logo-core">AI</div>
+          </div>
+        </div>
+        <button id="restart-btn" class="cyber-btn restart-btn hidden">
+          <span>RESTART PROTOCOL ↺</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MAIN STAGE AREA & CAKE CANVAS -->
+  <div id="stage-area" class="stage-area hidden">
+    <div class="pedestal-base" id="pedestal-base">
+      <div class="holo-ring outer-ring"></div>
+      <div class="holo-ring inner-ring"></div>
+      <div class="holo-emitter"></div>
+    </div>
+
+    <canvas id="cake-canvas" width="900" height="700"></canvas>
+
+    <div id="slice-plate" class="slice-plate hidden">
+      <div class="plate-rim"></div>
+      <div class="plate-center"></div>
+      <div class="plate-label" id="plate-label">SERVED PLATE</div>
+    </div>
+
+    <div id="sci-fi-fork" class="sci-fi-fork hidden">
+      <div class="fork-head">
+        <div class="prong"></div>
+        <div class="prong"></div>
+        <div class="prong"></div>
+      </div>
+      <div class="fork-handle"></div>
+      <div class="fork-tooltip">CLICK SLICE TO EAT</div>
+    </div>
+
+    <div id="instruction-banner" class="instruction-banner hidden">
+      <div class="laser-icon" id="laser-icon">🗡️</div>
+      <div class="banner-text">
+        <span class="main-instr" id="main-instr">PLEASE MAKE THE FIRST CUT</span>
+        <span class="sub-instr">Drag knife across the cake to slice</span>
+      </div>
+    </div>
+
+    <div id="celebration-banner" class="celebration-banner hidden">
+      <h1 class="glow-text" id="celebration-title">HAPPY BIRTHDAY, SIR!</h1>
+      <p class="celebration-sub" id="celebration-subtitle">Celebration Active • Enjoy Your Slice</p>
+    </div>
+  </div>
+
+  <!-- CLASSIC MODE CELEBRATORY CARD OVERLAY -->
+  <div id="classic-card-overlay" class="classic-card-overlay hidden">
+    <div class="classic-card-content">
+      <div class="card-quote-icon">✨</div>
+      <div class="classic-card-message">
+        "Thank you for inspiring us to build the future. Happy Birthday, Sir."
+      </div>
+      <button id="classic-close-card-btn" class="classic-close-btn">CELEBRATE AGAIN ↺</button>
+    </div>
+  </div>
+
+  <script src="audio.js"></script>
+  <script src="cakeCanvas.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
